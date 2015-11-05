@@ -1,8 +1,8 @@
 #Qt More Builds
 
-###Supplying builds for Qt configurations not currently supported by the Qt Project.
+###Supplying builds for Qt configurations not currently produced by the Qt Project.
 
-##Qt built with Clang 3.6 on Ubuntu 14.04
+##Qt 5.5.1 built with Clang 3.6 on Ubuntu 14.04
 
 The following configuration options were used:
 
