@@ -29,15 +29,32 @@ sudo apt-get -qq -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--f
 
 # Build Qt
 cd ~
-mkdir Qt-5.7.0
-cd Qt-5.7.0
-wget -N https://download.qt.io/official_releases/qt/5.7/5.7.0/single/qt-everywhere-opensource-src-5.7.0.tar.gz
-gunzip qt-everywhere-opensource-src-5.7.0.tar.gz
-tar xf qt-everywhere-opensource-src-5.7.0.tar
 
-cd qt-everywhere-opensource-src-5.7.0
+if [ ! -d "Qt-5.7.0" ]; then
+  mkdir -p Qt-5.7.0
+fi
+
+cd Qt-5.7.0/
+
+if [ ! -f "qt-everywhere-opensource-src-5.7.0.tar.gz" ]; then
+  echo "Getting source files..."
+  wget -N https://download.qt.io/official_releases/qt/5.7/5.7.0/single/qt-everywhere-opensource-src-5.7.0.tar.gz
+  gunzip < qt-everywhere-opensource-src-5.7.0.tar.gz > qt-everywhere-opensource-src-5.7.0.tar
+else
+  echo "Already downloaded source files."
+fi
+
+if [ -f "qt-everywhere-opensource-src-5.7.0.tar" ]; then
+  echo "Extracting downloaded source files..."
+  rm -rf qt-everywhere-opensource-src-5.7.0/
+  tar xf qt-everywhere-opensource-src-5.7.0.tar
+fi
+
+cd qt-everywhere-opensource-src-5.7.0/
+
+echo "Building Qt..."
 sudo chmod +x configure
-./configure -platform linux-g++-64 -opensource -confirm-license -release -c++std c++14 -shared -largefile -openssl -no-qml-debug -qt-libpng -qt-libjpeg -qt-doubleconversion -qt-harfbuzz -qt-xcb -openssl -qt-pcre -skip qtwebengine -nomake tests -nomake examples -v
+./configure -platform linux-g++-64 -opensource -confirm-license -release -c++std c++14 -shared -largefile -openssl -no-qml-debug -qt-libpng -qt-libjpeg -qt-doubleconversion -qt-harfbuzz -qt-xcb -qt-pcre -skip qtwebengine -nomake tests -nomake examples -v
 make -j2
 sudo make install
 
