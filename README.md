@@ -1,6 +1,8 @@
-#Qt More Builds
+# Qt More Builds
 
-###Supplying builds for Qt configurations not currently produced by the Qt Project.
+### Supplying builds for Qt configurations not currently produced by the Qt Project.
+
+## Qt 5.11.0 build with clang on macOS 10.13.4
 
 ## Qt 5.7.0 built with clang (Apple LLVM 8.0) on macOS 10.12
 ### Includes OpenSSL but not the Qt Connectivity module (Bluetooth or NFC)
@@ -12,7 +14,7 @@
 
 ./configure -platform linux-g++-64 -opensource -confirm-license -release -c++std c++14 -shared -largefile -openssl -no-qml-debug -qt-libpng -qt-libjpeg -qt-doubleconversion -qt-harfbuzz -qt-xcb -qt-pcre -skip qtwebengine -nomake tests -nomake examples -v -prefix ~/Qt/5.7
 
-##Qt 5.5.1 built with clang 3.6 on Ubuntu 14.04
+## Qt 5.5.1 built with clang 3.6 on Ubuntu 14.04
 
 The following configuration options were used:
 
